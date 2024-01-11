@@ -20,7 +20,7 @@ from django.conf.urls import include
 from django.conf.urls.static import static
 from django.conf import settings
 
-from beginner.feed import urls as feed_urls
+from feed import urls as feed_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
