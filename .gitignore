@@ -1,0 +1,5 @@
+/.idea
+
+/intermediate/db.sqlite3
+/venv
+/venv_desktop
