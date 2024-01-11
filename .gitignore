@@ -1,5 +1,8 @@
 /.idea
 
+/beginner/db.sqlite3
+
 /intermediate/db.sqlite3
+
 /venv
 /venv_desktop
