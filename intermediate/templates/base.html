@@ -14,7 +14,7 @@
 <body>
 <div class="min-h-screen flex flex-row bg-gray-100">
     {% include 'components/sidebar_nav.html' %}
-    <div class="p-16">
+    <div class="flex p-16 w-10/12 justify-center">
         {% block body %}
             {% block content %}DEFAULT CONTENT{% endblock %}
         {% endblock %}
@@ -34,23 +34,18 @@
                     </svg>
                 </div>
                 <hr>
-                <div class="">{# TODO: Add the ajax form #}
+                <div class="w-full">
+                    <textarea class="border-2 border-blue-500 my-4 w-full js-post-text" placeholder="Enter your post"
+                              rows="3" maxlength="240" data-post-url="{% url 'feed:new_post' %}"></textarea>
                 </div>
                 <hr>
                 <div class="ml-auto">
-                    <div>
-                        <div class="flex items-center justify-center">
-                            <div class="my-3">
-                                <button class="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-1 px-3 inline-flex items-center text-sm mt-4 js-submit"
-                                        , type="button">
-                                    <span class="mr-2">Create Post</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                        <path fill="currentcolor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <button class="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-1 px-3 inline-flex items-center text-sm mt-4 js-submit" type="button">
+                        <span class="mr-2">Create Post</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentcolor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>

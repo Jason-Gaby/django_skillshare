@@ -1,7 +1,7 @@
 {% load thumbnail %}
 
 <!-- component is from https://tailwindcomponents.com/component/post-artical-->
-<div class="max-w-4xl px-10 my-4 py-6 bg-white rounded-lg shadow-md" style="width: 50rem">
+<div class="h-fit w-8/12 min-w-72 max-w-4xl px-10 my-4 py-6 bg-white rounded-lg shadow-md">
     <div class="flex justify-between items-center">
         <span class="font-light text-gray-600">{{ post.date | date:"F j, Y, g:i:a" }}</span>
     </div>
@@ -11,14 +11,13 @@
     <div class="flex justify-between items-center mt-4">
         {% if show_detail_link %}
             <a class="text-blue-600 hover:underline" href="{% url 'feed:detail' post.id %}">
-                {# TODO ADD A DETAILED IRL! #} Read more
+                Read more
             </a>
         {% else %}
             <span>&nbsp;</span>
         {% endif %}
         <div>
-            {# TODO User needs a link to their bio and a photo and a thumbnail and a name #}
-            <a class="flex items-center" href="#">
+            <a class="flex items-center" href="{% url 'profiles:detail' post.author.username %}">
                 {% thumbnail post.author.profile.image "373x373" crop="center" as im %}
                     <img class="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block" src="{{ im.url }}"
                          alt="avatar">
