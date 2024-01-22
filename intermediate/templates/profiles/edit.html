@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load widget_tweaks %}
+{% load thumbnail %}
 
 {% block title %} {{ user.username }} edit {% endblock title %}
 
@@ -13,52 +14,57 @@
                         Edit your profile
                     </h1>
 
-                    <form class="mx-5 my-5">
+                    <form method="post" enctype="multipart/form-data" class="mx-5 my-5">
+                        {% csrf_token %}
                         <label class="relative block my-2 p-3 border-2 border-black rounded" htmlFor="name">
                               <span class="text-md font-semibold text-zinc-900" htmlFor="name">
                                 Username
                               </span>
-                            {% render_field form.user_name class="w-full bg-transparent p-0 text-sm  text-gray-500 focus:outline-none" placeholder="My username" %}
+                            {% render_field form.user.username class="w-full bg-transparent p-0 text-sm  text-gray-500 focus:outline-none" placeholder="My username" %}
+                        </label>
+                        <label class="relative block my-2 p-3 border-2 border-black rounded" htmlFor="name">
+                              <span class="text-md font-semibold text-zinc-900" htmlFor="name">
+                                Password
+                              </span>
+                            {% render_field form.user.password type='password' class="w-full bg-transparent p-0 text-sm  text-gray-500 focus:outline-none" placeholder="My password" %}
                         </label>
                         <label class="relative block my-2 p-3 border-2 border-black rounded" htmlFor="name">
                             <span class="text-md font-semibold text-zinc-900" htmlFor="name">
                                 First Name
                               </span>
-                            {% render_field form.first_name class="w-full bg-transparent p-0 text-sm  text-gray-500 focus:outline-none" placeholder="My first name" %}
+                            {% render_field form.user.first_name class="w-full bg-transparent p-0 text-sm  text-gray-500 focus:outline-none" placeholder="My first name" %}
 
                         </label>
                         <label class="relative block my-2 p-3 border-2 border-black rounded" htmlFor="name">
                             <span class="text-md font-semibold text-zinc-900" htmlFor="name">
                                 Last Name
                               </span>
-                            {% render_field form.last_name class="w-full bg-transparent p-0 text-sm  text-gray-500 focus:outline-none" placeholder="My last name" %}
+                            {% render_field form.user.last_name class="w-full bg-transparent p-0 text-sm  text-gray-500 focus:outline-none" placeholder="My last name" %}
                         </label>
-
+                        <label class="relative block my-2 p-3 border-2 border-black rounded" htmlFor="name">
+                            <span class="text-md font-semibold text-zinc-900" htmlFor="name">
+                                Profile Name
+                              </span>
+                            {% render_field form.profile.profile_name class="w-full bg-transparent p-0 text-sm  text-gray-500 focus:outline-none" placeholder="My profile name" %}
+                        </label>
 
 
                         <div class="shrink-0 mt-5">
-                            <img class="h-20 w-20 object-cover rounded-full" src="https://sahilnetic.xyz/sahilnetic.png"
-                                 alt="Current profile photo"/>
+                            {% thumbnail profile.image "100x100" crop="center" as im %}
+                                <img src="{{ im.url }}" class="h-20 w-20 object-cover rounded-full"
+                                     alt="Current profile photo">
+                            {% endthumbnail %}
                         </div>
                         <label class="block pt-2">
                             <span class="sr-only t-2">Choose profile photo</span>
-                            <input type="file" class="w-full text-sm text-slate-500
-                                                      file:mr-4 file:py-2 file:px-4
-                                                      file:rounded-full file:border-0
-                                                      file:text-sm file:font-semibold
-                                                      file:bg-pink-300 file:text-zinc-900
-                                                      hover:file:bg-rose-300
-                                                    "/>
+                            {% render_field form.profile.image type='file' name='image' class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-300 file:text-zinc-900 hover:file:bg-rose-300" %}
                         </label>
 
 
-
-
-
-
-                        <Button class="mt-5 border-2 px-5 py-2 rounded-lg border-black border-b-4 font-black translate-y-2 border-l-4">
+                        <button type='submit'
+                                class="mt-5 border-2 px-5 py-2 rounded-lg border-black border-b-4 font-black translate-y-2 border-l-4">
                             Submit
-                        </Button>
+                        </button>
                     </form>
                 </div>
             </div>
